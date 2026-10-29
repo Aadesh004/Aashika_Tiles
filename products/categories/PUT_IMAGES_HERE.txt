@@ -1,0 +1,1 @@
+Add category-card photos here as .webp or .jpg, named category-slug.webp (for example floor-tiles.webp or white-marble.webp). Product department cards use products/<tiles|marble|granite>/category-<category-slug>.webp. Replace category paths in products.js/index.html only when needed. See ../../README.md.

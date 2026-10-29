@@ -1,0 +1,1 @@
+Add verified granite slab/texture photos here as .webp or .jpg. Map the exact relative image paths in the matching product's images array in ../products.js. Use close-up pattern photos and authorized room images only; confirm technical details before listing. See ../../README.md.

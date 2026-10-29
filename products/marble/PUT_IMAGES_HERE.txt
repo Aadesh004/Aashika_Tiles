@@ -1,0 +1,1 @@
+Add verified marble slab/detail photos here as .webp or .jpg. Map the exact relative image paths in the matching product's images array in ../products.js. Use close texture views and authorized room images only; unknown dimensions and finishes must remain blank/unlisted. See ../../README.md.

@@ -1,0 +1,1 @@
+Add approved .webp or .jpg interior inspiration images: living-room.webp, bathroom.webp, kitchen.webp, bedroom.webp, staircase.webp, outdoor.webp, commercial.webp. Do not describe editorial reference imagery as Aashika projects/customer work. See ../README.md.

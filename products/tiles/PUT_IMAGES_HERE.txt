@@ -1,0 +1,1 @@
+Add verified tile photos here as .webp or .jpg. Open products.js and set each product's images array to exact relative paths, e.g. products/tiles/tile-preview-01-1.webp. Include close-up texture and an authorized installed-room photo if available. Category/department image names are documented in ../../README.md. Do not leave a demo item labelled as real stock.

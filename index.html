@@ -1,0 +1,769 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>
+      Aashika Tiles & Marble | Tiles, Marble & Granite in Nawalpur, Nepal
+    </title>
+    <meta
+      name="description"
+      content="Explore tiles, marble and granite with Aashika Tiles & Marble, Nawalpur. Official Laminar dealer. Contact the showroom to confirm current products and details."
+    />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Aashika Tiles & Marble",
+        "description": "Tiles, marble and granite showroom and official Laminar dealer in Nawalpur, Nepal.",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Nawalpur",
+          "addressCountry": "NP"
+        }
+      }
+    </script>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <!-- Shared site header and navigation -->
+    <header>
+      <div class="w nv">
+        <a class="logo" href="#home">Aashika<small>Tiles & Marble</small></a>
+        <nav id="nv">
+          <a href="#home">Home</a><a href="#products">Products</a
+          ><a href="#tiles">Tiles</a><a href="#marble">Marble</a
+          ><a href="#granite">Granite</a><a href="#laminar">Laminar</a
+          ><a href="#gallery">Gallery</a><a href="#about">About Us</a
+          ><a href="#contact">Contact</a>
+        </nav>
+        <div class="rt">
+          <a href="#products" aria-label="Browse materials" class="nav-search"
+            >&#8981;</a
+          ><a class="btn" href="#showroom">Visit Showroom</a
+          ><button
+            id="bg"
+            aria-label="Menu"
+            aria-expanded="false"
+            aria-controls="nv"
+          >
+            &#9776;
+          </button>
+        </div>
+      </div>
+    </header>
+    <!-- The hash-based application renders page content into this mount point. -->
+    <main id="app"></main>
+    <!-- Shared footer and contact placeholders -->
+    <footer class="ft">
+      <div class="w">
+        <div class="fg">
+          <div>
+            <div class="logo footer-logo">Aashika Tiles & Marble</div>
+            <p class="footer-description">
+              Tiles, marble and granite in Nawalpur, Nepal.
+            </p>
+            <p class="footer-dealer-note">
+              Official Dealer of Laminar Tiles & Marble in Nawalpur
+            </p>
+          </div>
+          <div>
+            <b>Quick Links</b><a href="#home">Home</a
+            ><a href="#products">Products</a><a href="#tiles">Tiles</a
+            ><a href="#marble">Marble</a><a href="#granite">Granite</a
+            ><a href="#laminar">Laminar</a><a href="#gallery">Gallery</a
+            ><a href="#about">About</a><a href="#contact">Contact</a>
+          </div>
+          <div>
+            <b>Categories</b><a href="#c-tiles-floor-tiles">Floor Tiles</a
+            ><a href="#c-tiles-wall-tiles">Wall Tiles</a
+            ><a href="#c-tiles-bathroom-tiles">Bathroom Tiles</a
+            ><a href="#c-tiles-kitchen-tiles">Kitchen Tiles</a
+            ><a href="#c-tiles-outdoor-tiles">Outdoor Tiles</a
+            ><a href="#marble">Marble</a><a href="#granite">Granite</a>
+          </div>
+          <div>
+            <b>Contact</b>
+            <p class="footer-contact">
+              <span class="ph">[ADD VERIFIED PHONE NUMBER]</span><br /><span
+                class="ph"
+                >[ADD VERIFIED EMAIL ADDRESS]</span
+              ><br /><span class="ph">[ADD VERIFIED SHOWROOM ADDRESS]</span
+              ><br />Nawalpur, Nepal
+            </p>
+          </div>
+        </div>
+        <p class="footer-copyright">
+          &copy; Aashika Tiles & Marble. All Rights Reserved.
+        </p>
+      </div>
+    </footer>
+    <a class="wa" id="wa">Contact Showroom</a>
+    <div
+      id="lb"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Image preview"
+      aria-hidden="true"
+    >
+      <i></i>
+    </div>
+    <!-- Load the structured catalogue before the app code. -->
+    <script src="products.js"></script>
+    <!-- Site configuration, rendering helpers, pages, and route handling -->
+    <script>
+      // ===== EDITABLE CONFIG: replace placeholders with real details =====
+      const CFG = {
+        wa: "",
+        mapUrl: "",
+        formEndpoint: "",
+        msg: "Hello Aashika Tiles & Marble, I would like to know more about your products.",
+      };
+      // Product records live in products.js; replace illustrative entries with verified inventory.
+      // 1. Shared data, image, category, and department helpers
+      const T = (a, b, v) =>
+        `background:${v ? `repeating-linear-gradient(${v}deg,transparent 0 38px,rgba(0,0,0,.09) 38px 39px),` : ""}linear-gradient(135deg,${a},${b})`;
+      const P = (window.AASHIKA_PRODUCTS || []).map((p) => ({
+        ...p,
+        material: {
+          tiles: "Tiles",
+          marble: "Marble",
+          granite: "Granite",
+          laminar: "Laminar",
+        }[p.department],
+        colour: p.color,
+        style: p.pattern,
+        application: p.applications || [],
+        availableLabel:
+          p.available === null
+            ? "Confirm with showroom"
+            : p.available
+              ? "Available · verify"
+              : "Unavailable",
+      }));
+      /* Product records and photo paths are managed in products.js. See README.md. */
+      const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+      const EDITORIAL_PHOTOS = [
+        "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=78&fit=crop",
+        "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=1200&q=78&fit=crop",
+        "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=1200&q=78&fit=crop",
+        "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1200&q=78&fit=crop",
+        "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=1200&q=78&fit=crop",
+      ];
+      const editorialPhoto = (department, index = 0) =>
+        EDITORIAL_PHOTOS[
+          ({ tiles: 0, marble: 1, granite: 2, laminar: 3, inspiration: 4 }[
+            department
+          ] +
+            index) %
+            EDITORIAL_PHOTOS.length
+        ];
+      const CATEGORY_TITLES = {
+        "floor-tiles": "Floor Tiles",
+        "wall-tiles": "Wall Tiles",
+        "bathroom-tiles": "Bathroom Tiles",
+        "kitchen-tiles": "Kitchen Tiles",
+        "living-room-tiles": "Living Room Tiles",
+        "bedroom-tiles": "Bedroom Tiles",
+        "outdoor-tiles": "Outdoor Tiles",
+        "parking-tiles": "Parking Tiles",
+        "staircase-tiles": "Staircase Tiles",
+        "commercial-tiles": "Commercial Tiles",
+        "large-format-tiles": "Large Format Tiles",
+        "marble-look-tiles": "Marble-Look Tiles",
+        "wood-look-tiles": "Wood-Look Tiles",
+        "stone-look-tiles": "Stone-Look Tiles",
+        "decorative-tiles": "Decorative Tiles",
+        "white-marble": "White Marble",
+        "black-marble": "Black Marble",
+        "grey-marble": "Grey Marble",
+        "beige-marble": "Beige Marble",
+        "brown-marble": "Brown Marble",
+        "veined-marble": "Veined Marble",
+        "premium-marble": "Premium Marble",
+        "black-granite": "Black Granite",
+        "white-granite": "White Granite",
+        "grey-granite": "Grey Granite",
+        "brown-granite": "Brown Granite",
+        "red-granite": "Red Granite",
+        "premium-granite": "Premium Granite",
+      };
+      const categoryTitle = (value) =>
+        CATEGORY_TITLES[value] ||
+        value?.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase()) ||
+        "Collection";
+      const DEP = {
+        tiles: {
+          id: "tiles",
+          n: "Tiles",
+          m: "Tiles",
+          k: "fc",
+          h: "Tiles for Every Space",
+          s: "Discover beautiful surfaces for floors, walls, kitchens, bathrooms, outdoor spaces and more.",
+          bg: T("#cfc8bb", "#4f493f", 70),
+          c: [
+            "Floor Tiles",
+            "Wall Tiles",
+            "Bathroom Tiles",
+            "Kitchen Tiles",
+            "Living Room Tiles",
+            "Bedroom Tiles",
+            "Outdoor Tiles",
+            "Parking Tiles",
+            "Staircase Tiles",
+            "Commercial Tiles",
+            "Large Format Tiles",
+            "Marble-Look Tiles",
+            "Wood-Look Tiles",
+            "Stone-Look Tiles",
+            "Decorative Tiles",
+          ],
+        },
+        marble: {
+          id: "marble",
+          n: "Marble",
+          m: "Marble",
+          k: "fc",
+          h: "Natural Marble Collection",
+          s: "Timeless natural surfaces selected to bring elegance and character to every space.",
+          bg: T("#ece8e0", "#6d675d", 62),
+          c: [
+            "White Marble",
+            "Black Marble",
+            "Grey Marble",
+            "Beige Marble",
+            "Brown Marble",
+            "Veined Marble",
+            "Premium Marble",
+          ],
+        },
+        granite: {
+          id: "granite",
+          n: "Granite",
+          m: "Granite",
+          k: "fc",
+          h: "Granite Collection",
+          s: "Strength, natural beauty and timeless character.",
+          bg: T("#4a4a4f", "#0e0e10", 0),
+          c: [
+            "Black Granite",
+            "White Granite",
+            "Grey Granite",
+            "Brown Granite",
+            "Red Granite",
+            "Premium Granite",
+          ],
+        },
+      };
+      const CATS = [
+        ...DEP.tiles.c
+          .slice(0, 6)
+          .map((name, i) => [
+            name,
+            "Explore tile options for " + name.toLowerCase(),
+            "#cfc8bb",
+            "#8f887b",
+            "tiles",
+            i,
+          ]),
+        ...DEP.marble.c
+          .slice(0, 4)
+          .map((name, i) => [
+            name,
+            "Explore marble options for " + name.toLowerCase(),
+            "#e8e2d6",
+            "#b5ab98",
+            "marble",
+            i,
+          ]),
+        ...DEP.granite.c
+          .slice(0, 4)
+          .map((name, i) => [
+            name,
+            "Explore granite options for " + name.toLowerCase(),
+            "#77746f",
+            "#34312c",
+            "granite",
+            i,
+          ]),
+      ];
+      const imageFallback = (photo) =>
+        `const frame=this.closest('.im'),src=this.getAttribute('src');if(!this.dataset.formatTried&&/\\.(webp|jpe?g)(?=\\?|$)/i.test(src||'')){this.dataset.formatTried='1';this.src=(src||'').replace(/\\.(webp|jpe?g)(?=\\?|$)/i,m=>m.toLowerCase()==='.webp'?'.jpg':'.webp');return}if(!this.dataset.fallback){this.dataset.fallback='1';this.alt='Editorial interior photo — not a photograph of the listed product';this.src='${photo}';if(frame)frame.classList.add('editorial')}else{this.remove();if(frame)frame.classList.add('missing')}`;
+      const imageHTML = (src, alt, photo, label) =>
+        `<img loading="lazy" decoding="async" alt="${alt}" src="${src}" onerror="${imageFallback(photo)}"><span class="photo-credit">${label || "Editorial image · not showroom product photography"}</span>`;
+      const productPath = (p, i) =>
+        p.images?.[i] || `products/${p.department}/${p.id}-${i + 1}.webp`;
+      const textureFor = (p) =>
+        T(
+          ({
+            tiles: ["#ddd9d1", "#8b867e"],
+            marble: ["#eeeae3", "#bcb4a8"],
+            granite: ["#77746f", "#302f30"],
+            laminar: ["#d8cfbf", "#81735e"],
+          }[p.department] || ["#d8d4cb", "#88847a"])[0],
+          ({
+            tiles: ["#ddd9d1", "#8b867e"],
+            marble: ["#eeeae3", "#bcb4a8"],
+            granite: ["#77746f", "#302f30"],
+            laminar: ["#d8cfbf", "#81735e"],
+          }[p.department] || ["#d8d4cb", "#88847a"])[1],
+          42,
+        );
+      const IM = (p, i = 0) =>
+        `${imageHTML(productPath(p, i), p.previewOnly ? "Editorial reference photo; product details are illustrative" : "Product photograph", editorialPhoto(p.department, i))}<b>Photo needed: ${productPath(p, i)}</b>`;
+      const SL = (f, css, department = "tiles", i = 0) =>
+        `<div class="im image-slot" style="${css}">${imageHTML(f, "Editorial interior inspiration image; not a showroom product photo", editorialPhoto(department, i), "Editorial photo · not product photography")}<b>Photo needed: ${f}</b></div>`;
+      const GAL = [
+        "Living Room",
+        "Bathroom",
+        "Kitchen",
+        "Bedroom",
+        "Staircase",
+        "Outdoor",
+        "Commercial",
+      ];
+      const GI = GAL.map((t, i) => ({
+        t,
+        photo: `inspiration/${slug(t)}.webp`,
+        fallback: editorialPhoto("inspiration", i),
+        category:
+          t === "Bathroom"
+            ? "bathroom-tiles"
+            : t === "Kitchen"
+              ? "kitchen-tiles"
+              : t === "Outdoor"
+                ? "outdoor-tiles"
+                : t === "Staircase"
+                  ? "staircase-tiles"
+                  : t === "Commercial"
+                    ? "commercial-tiles"
+                    : t === "Bedroom"
+                      ? "bedroom-tiles"
+                      : "living-room-tiles",
+      }));
+      const INSP = () =>
+        `<div class="w pg"><div class="eb">Editorial ideas · not showroom projects</div><h1 style="font-size:clamp(2rem,5vw,3.2rem)">Find Inspiration for Your Space</h1><p class="mt">Room photography is editorial imagery, not Aashika customer projects or verified product installs. Replace it with approved showroom imagery when available.</p><div class="g inspiration-grid">${GI.map((x, i) => `<a class="cd rv" href="#c-tiles-${x.category}">${SL(x.photo, T("#d9d2c4", "#8c8473", 40), "inspiration", i)}<div class="cb"><h3>${x.t} Inspiration</h3><p>Explore tile options for ${x.t.toLowerCase()} spaces.</p><span class="lk">Shop ${x.t} Tiles →</span></div></a>`).join("")}</div></div>`;
+      function buildNav() {
+        const dd = (d) =>
+          `<div class="dd"><a href="#${d}">${DEP[d].n}</a><div>${DEP[d].c.map((c) => `<a href="#c-${d}-${slug(c)}">${c}</a>`).join("")}<a href="#${d}"><b>View All ${DEP[d].n}</b></a></div></div>`;
+        $("#nv").innerHTML =
+          `<a href="#home">Home</a>${dd("tiles")}${dd("marble")}${dd("granite")}<a href="#laminar">Laminar</a><a href="#inspiration">Inspiration</a><a href="#gallery">Gallery</a><a href="#about">About</a><a href="#contact">Contact</a>`;
+      }
+      const $ = (s) => document.querySelector(s),
+        app = $("#app"),
+        uniq = (k) => [...new Set(P.map((p) => p[k]))].sort();
+      const hasWhatsApp = /^\d{8,15}$/.test(CFG.wa),
+        whatsappHref = (message) =>
+          hasWhatsApp
+            ? "https://wa.me/" + CFG.wa + "?text=" + encodeURIComponent(message)
+            : "#contact";
+      $("#wa").href = whatsappHref(CFG.msg);
+      $("#wa").textContent = hasWhatsApp ? "WhatsApp Us" : "Contact Showroom";
+      if (hasWhatsApp) {
+        $("#wa").target = "_blank";
+        $("#wa").rel = "noopener";
+      } else {
+        $("#wa").classList.add("contact-only");
+      }
+      $("#bg").onclick = () => {
+        const open = $("#nv").classList.toggle("open");
+        $("#bg").setAttribute("aria-expanded", open);
+      };
+      const card = (p) =>
+        `<a class="cd pc" href="#p-${p.id}"><div class="im pc-photo" style="${textureFor(p)}">${imageHTML(productPath(p, 0), p.previewOnly ? "Editorial photo; not a verified product" : "Product photograph", editorialPhoto(p.department, 0))}${imageHTML(productPath(p, 1), p.previewOnly ? "Editorial room image; not a verified product" : "Installed room example", editorialPhoto(p.department, 1))}<span class="preview-tag">${p.previewOnly ? "Illustrative preview" : "View product"}</span><b>Photo needed: ${productPath(p, 0)}</b></div><div class="cb"><h3>${p.name}</h3><div class="mt">${categoryTitle(p.category)}${p.finish ? ` · ${p.previewOnly ? "example finish: " : ""}${p.finish}` : ""}</div><span class="lk">View Details →</span></div></a>`;
+      const ph = (t) => `<span class="ph">${t}</span>`;
+      const WHY = [
+        [
+          "Tiles",
+          "Browse tile categories and illustrative catalogue previews.",
+        ],
+        [
+          "Marble",
+          "Explore marble categories; confirm products and specifications with the showroom.",
+        ],
+        [
+          "Granite",
+          "Explore granite categories; confirm products and specifications with the showroom.",
+        ],
+        ["Laminar", "Official Laminar dealer in Nawalpur."],
+        ["Visit", "Ask the showroom for its verified address and directions."],
+      ];
+      const showroom = `<section id="showroom" class="lm"><div class="w rv"><div class="eb">Showroom · Nawalpur</div><h2>Plan a showroom visit</h2><p style="max-width:620px">See tiles, marble and granite in person. Contact the showroom to confirm the current address, opening details and directions before visiting.</p><p>${ph("[ADD VERIFIED SHOWROOM ADDRESS]")}</p><a class="btn" style="background:#eee9df;color:#1d1c1a" href="${CFG.mapUrl || "#contact"}" ${CFG.mapUrl ? 'target="_blank" rel="noopener"' : ""}>${CFG.mapUrl ? "Get Directions" : "Directions link to be added"}</a></div></section>`;
+      // 2. Page templates and catalogue layouts
+      const R = {
+        home() {
+          return `<div class="hero"><div class="hero-photo">${SL("showroom/hero.webp", "", "inspiration", 0)}</div><div class="w"><span class="badge">Official Dealer of Laminar Tiles & Marble — Nawalpur</span><div class="hero-kicker">Tiles <span>•</span> Marble <span>•</span> Granite</div><h1>Aashika Tiles &amp; Marble</h1><p>Explore surfaces for your home, project or workspace. Browse the material catalogue, find inspiration, then contact the showroom to confirm products and details.</p><a class="btn" href="#products">Explore Materials</a> <a class="btn o" href="#showroom">Plan a Showroom Visit</a></div></div>
+<div class="visual-note">Editorial interior photography is used as a visual stand-in only. It is not Aashika product, showroom, customer or project photography.</div><section><div class="w"><div class="eb rv">Tiles • Marble • Granite</div><h2 class="rv">Explore Our Materials</h2><div class="bg3">${["tiles", "marble", "granite"].map((d, i) => `<a class="bc3 rv" href="#${d}">${SL(`showroom/home-${d}.webp`, DEP[d].bg, d, i)}<div class="t"><h3>${DEP[d].n.toUpperCase()}</h3><span class="lk" style="color:#fff">Explore Collection →</span></div></a>`).join("")}</div></div></section><section class="home-categories"><div class="w"><div class="eb rv">Browse by category</div><h2 class="rv">Explore Our Collection</h2><div class="g">${CATS.map((c, i) => `<a class="cd rv" href="#c-${c[4]}-${slug(c[0])}">${SL(`products/${c[4]}/category-${slug(c[0])}.webp`, T(c[2], c[3], 70), c[4], i)}<div class="cb"><h3>${c[0]}</h3><p>${c[1]}</p><span class="lk">Explore Collection →</span></div></a>`).join("")}</div></div></section>
+<section class="lm laminar-banner"><div class="laminar-banner-image">${SL("showroom/laminar-banner.webp", "", "laminar")}</div><div class="w rv"><div class="eb">Official Laminar Dealer</div><h2>Discover Laminar</h2><p style="max-width:620px">Explore and inquire about Laminar products through Aashika Tiles & Marble in Nawalpur. Product names and authorized imagery will be added from current approved dealer materials.</p><a class="btn" style="background:#eee9df;color:#1d1c1a" href="#laminar">Explore Laminar →</a> <a class="btn o" href="#showroom">Visit Our Showroom →</a></div></section>
+<section><div class="w"><div class="eb rv">Explore locally</div><h2 class="rv">Materials, ideas and a showroom</h2><div class="g">${WHY.map((w) => `<div class="cd rv" style="cursor:default"><div class="cb"><h3>${w[0]}</h3><p>${w[1]}</p></div></div>`).join("")}</div></div></section>
+<section><div class="w"><h2 class="rv">Find Your Perfect Style</h2><div class="ch">${["Living Room", "Kitchen", "Bathroom", "Bedroom", "Office", "Outdoor"].map((a) => `<button onclick="location.hash='products';window.PRE={a:'${a}'}">${a}</button>`).join("")}</div><p class="mt">Choose a room to browse materials suited to it.</p></div></section>${showroom}`;
+        },
+        shop(mat, title, intro) {
+          const d = DEP[(mat || "").toLowerCase()];
+          return `${d ? `<div class="dh department-${d.id}">${SL(`products/${d.id}/department-hero.webp`, d.bg, d.id, 0)}<div class="w"><div class="eb">${d.n} · Aashika Tiles & Marble</div><h1>${d.h}</h1><p style="max-width:560px">${d.s}</p><a class="btn o" href="#contact">Ask the showroom</a></div></div>` : ""}<div class="w pg"><div class="bc"><a href="#home">Home</a> → ${d ? d.n : "Products"}</div>${
+            d
+              ? `<div class="department-categories">${d.c
+                  .map((c, i) => {
+                    const key = slug(c),
+                      count = P.filter(
+                        (p) =>
+                          p.department === d.id &&
+                          p.category === key &&
+                          !p.previewOnly,
+                      ).length;
+                    return `<a class="cd category-card" href="#c-${d.id}-${key}">${SL(`products/${d.id}/category-${key}.webp`, d.bg, d.id, i)}<div class="cb"><h3>${c}</h3>${count ? `<span class="mt">${count} confirmed product${count === 1 ? "" : "s"}</span>` : ""}<span class="lk">Explore Collection →</span></div></a>`;
+                  })
+                  .join("")}</div>`
+              : ""
+          }<h2>${title}</h2><p style="color:var(--mu);max-width:640px">${intro}</p>
+<div class="preview-notice"><strong>Preview catalogue · verify all information</strong><span>Demo entries are illustrative, not confirmed products or inventory. Sizes, finishes and applications are examples only. Real catalogue listings appear after verified product details and photos are added.</span></div>
+<div class="catalog-layout"><aside class="filter-panel" id="filterPanel"><div class="filter-title"><strong>Refine collection</strong><button type="button" id="closeFilters" aria-label="Close filters">×</button></div><label>Category<select id="fc"></select></label><label>Colour<select id="fk"></select></label><label>Size<select id="fs"></select></label><label>Finish<select id="ff"></select></label><label>Application<select id="fa"></select></label><label>Style<select id="fstyle"></select></label><label>Brand<select id="fb"></select></label><label>Sort<select id="so"><option value="">Catalogue order</option><option value="featured">Featured first</option><option value="n">Name A–Z</option></select></label></aside><div class="catalog-results"><div class="catalog-search"><input id="q" placeholder="Search bathroom, white marble, grey…" aria-label="Search products"><button type="button" class="btn o" id="filterToggle" aria-expanded="false">Filters</button></div><p class="mt" id="resultCount" aria-live="polite"></p><div class="g ${d ? "" : "global-results"}" id="pg"></div><button type="button" class="btn o" id="loadMore" hidden>Load more products</button><p id="em" style="display:none">No matching previews. Check the collection or <a href="#laminar">explore Laminar</a>.</p></div></div></div>`;
+        },
+      };
+      // 3. Catalogue filtering, pagination, and mobile filter drawer
+      function initShop(mat) {
+        const base = P.filter((p) => !mat || p.material == mat),
+          pre = window.PRE;
+        window.PRE = null;
+        const defs = [
+          ["fc", "category", "All categories", categoryTitle],
+          ["fk", "colour", "All colours", (v) => v],
+          ["fs", "size", "All sizes", (v) => v],
+          ["ff", "finish", "All finishes", (v) => v],
+          ["fstyle", "style", "All styles", (v) => v],
+          ["fb", "brand", "All brands", (v) => v],
+        ];
+        defs.forEach(([id, k, l, display]) => {
+          $("#" + id).innerHTML =
+            `<option value="">${l}</option>` +
+            [...new Set(base.map((p) => p[k]).filter(Boolean))]
+              .sort()
+              .map((v) => `<option value="${v}">${display(v)}</option>`)
+              .join("");
+        });
+        const aps = [...new Set(base.flatMap((p) => p.application))].sort();
+        $("#fa").innerHTML =
+          `<option value="">All applications</option>` +
+          aps.map((v) => `<option>${v}</option>`).join("");
+        if (pre && aps.includes(pre.a)) $("#fa").value = pre.a;
+        if (pre && pre.k) {
+          const s = $("#" + pre.k);
+          if (s && ![...s.options].some((o) => o.value == pre.v))
+            s.add(
+              new Option(pre.k == "fc" ? categoryTitle(pre.v) : pre.v, pre.v),
+            );
+          if (s) s.value = pre.v;
+        }
+        let page = 1;
+        const pageSize = 24;
+        const run = () => {
+          const q = $("#q")
+              .value.toLowerCase()
+              .trim()
+              .split(/\s+/)
+              .filter(Boolean),
+            v = (id) => $("#" + id).value;
+          let r = base.filter(
+            (p) =>
+              (!v("fc") || p.category == v("fc")) &&
+              (!v("fk") || p.colour == v("fk")) &&
+              (!v("ff") || p.finish == v("ff")) &&
+              (!v("fs") || p.size == v("fs")) &&
+              (!v("fstyle") || p.style == v("fstyle")) &&
+              (!v("fb") || p.brand == v("fb")) &&
+              (!v("fa") || p.application.includes(v("fa"))) &&
+              q.every((w) =>
+                (
+                  p.name +
+                  categoryTitle(p.category) +
+                  p.colour +
+                  p.material +
+                  p.finish +
+                  p.style +
+                  p.application.join(" ") +
+                  p.brand
+                )
+                  .toLowerCase()
+                  .includes(w),
+              ),
+          );
+          if (v("so") == "n") r.sort((a, b) => a.name.localeCompare(b.name));
+          else if (v("so") == "featured")
+            r.sort((a, b) => Number(b.featured) - Number(a.featured));
+          const shown = r.slice(0, page * pageSize);
+          $("#pg").innerHTML = mat
+            ? shown.map(card).join("")
+            : ["tiles", "marble", "granite", "laminar"]
+                .map((dep) => {
+                  const group = shown.filter((p) => p.department === dep);
+                  return group.length
+                    ? `<section class="search-dept"><div class="search-dept-heading"><h3>${dep === "laminar" ? "Laminar" : dep[0].toUpperCase() + dep.slice(1)}</h3><a class="lk" href="#${dep}">View department →</a></div><div class="g">${group.map(card).join("")}</div></section>`
+                    : "";
+                })
+                .join("");
+          $("#em").style.display = r.length ? "none" : "block";
+          $("#loadMore").hidden = shown.length >= r.length;
+          $("#resultCount").textContent =
+            `Showing ${shown.length} of ${r.length} catalogue preview${r.length === 1 ? "" : "s"} · confirmed stock count not provided`;
+        };
+        const panel = $("#filterPanel"),
+          toggle = $("#filterToggle"),
+          close = $("#closeFilters");
+        toggle.onclick = () => {
+          panel.classList.add("open");
+          toggle.setAttribute("aria-expanded", "true");
+        };
+        close.onclick = () => {
+          panel.classList.remove("open");
+          toggle.setAttribute("aria-expanded", "false");
+        };
+        $("#loadMore").onclick = () => {
+          page++;
+          run();
+        };
+        document
+          .querySelectorAll(".catalog-layout input,.catalog-layout select")
+          .forEach((e) => {
+            e.addEventListener("input", () => {
+              page = 1;
+              run();
+            });
+            e.addEventListener("change", () => {
+              page = 1;
+              run();
+            });
+          });
+        run();
+      }
+      // 4. Product details and related-product cards
+      function detail(id) {
+        const p = P.find((x) => x.id == id);
+        if (!p) return R.home();
+        const rel = P.filter(
+          (x) => x.id != id && x.material == p.material,
+        ).slice(0, 4);
+        const wm = whatsappHref(
+          "Hello Aashika Tiles & Marble, I am asking about this catalogue preview: " +
+            p.name,
+        );
+        return `<div class="w pg"><div class="bc"><a href="#home">Home</a> → <a href="#${p.material.toLowerCase()}">${p.material}</a> → <a href="#c-${p.department}-${p.category}">${categoryTitle(p.category)}</a> → ${p.name}</div>${p.previewOnly ? `<div class="preview-notice"><strong>Illustrative catalogue entry · not verified inventory</strong><span>Product name and specification examples must be replaced with confirmed showroom information. Editorial fallback photos are not photographs of this product.</span></div>` : ""}<div class="dt product-detail" style="margin-top:20px"><div><div class="im detail-image" id="mm" style="aspect-ratio:1;cursor:zoom-in">${IM(p, 0)}</div><div class="th">${(p
+          .images.length
+          ? p.images
+          : [productPath(p, 0)]
+        )
+          .slice(0, 5)
+          .map(
+            (src, i) =>
+              `<button type="button" class="${i ? "" : "on"}" data-s="${i}" aria-label="Show image ${i + 1}"><img loading="lazy" src="${src}" alt="" onerror="${imageFallback(editorialPhoto(p.department, i))}"></button>`,
+          )
+          .join("")}</div></div>
+<div><div class="eb">${categoryTitle(p.category)} · ${p.previewOnly ? "preview" : "product"}</div><h1 style="font-size:2.4rem">${p.name}</h1><p>${p.description}</p><dl class="spec-list">${
+          [
+            ["Brand", p.brand],
+            ["Colour", p.colour],
+            ["Pattern", p.style],
+            ["Finish", p.finish],
+            ["Dimensions", p.size],
+            ["Thickness", p.thickness],
+          ]
+            .filter(([, v]) => v)
+            .map(
+              ([k, v]) =>
+                `<div><dt>${k}</dt><dd>${p.previewOnly ? `Example only · ${v}` : v}</dd></div>`,
+            )
+            .join("") ||
+          "<p>Verified specifications will be added when supplied by the showroom.</p>"
+        }<div><dt>Availability</dt><dd>${p.available === null ? "Please confirm with showroom" : p.available ? "Please confirm with showroom" : "Please inquire"}</dd></div></dl>
+<h3>Recommended applications</h3><p>${p.application.length ? p.application.join(" · ") : "Confirm suitable applications with the showroom."}</p><div class="detail-actions"><a class="btn" href="#contact">Ask for Price</a><a class="btn o" href="#contact">Check Availability</a><a class="btn o" target="${hasWhatsApp ? "_blank" : "_self"}" rel="noopener" href="${wm}">${hasWhatsApp ? "WhatsApp Us" : "WhatsApp · number needed"}</a></div></div></div>
+<section class="related-products"><div class="eb">Continue exploring</div><h2>Related ${p.material}</h2><div class="g">${rel.map(card).join("") || `<p>More verified ${p.material.toLowerCase()} listings will appear here as the showroom catalogue is added.</p>`}</div></section>${showroom}`;
+      }
+      // 5. Laminar, inspiration, gallery, about, and contact pages
+      const LAM = () =>
+        `<section class="laminar-hero"><div class="laminar-art">${SL("products/laminar/dealer-approved-hero.webp", T("#d8cfbf", "#5b5041", 48), "laminar", 0)}</div><div class="w laminar-copy"><div class="eb">Aashika Tiles & Marble · Nawalpur</div><h1 style="letter-spacing:.18em">LAMINAR</h1><h2>Official Laminar Dealer in Nawalpur</h2><p>Customers in Nawalpur can explore and inquire about Laminar products through Aashika Tiles & Marble. Contact the showroom to confirm current collections and availability.</p><a class="btn" href="https://laminar.np/" target="_blank" rel="noopener">Visit official Laminar website</a> <a class="btn o" href="#contact">Ask the showroom</a></div></section><div class="w pg laminar-content"><div class="eb">Official catalogue</div><h2>Laminar collections</h2><p>Current collection names, product details and dealer-authorized photography will be added when confirmed from official Laminar materials. Ask the showroom for its current catalogue in the meantime.</p><div class="laminar-request"><div class="laminar-request-image">${SL("products/laminar/authorized-catalogue.webp", T("#d8cfbf", "#81735e", 35), "laminar", 1)}</div><div><h3>Laminar catalogue information</h3><p>This section is ready for current official categories, product identifiers, verified specifications and images approved for dealer use.</p><ul><li>Current collection/category names from Laminar Nepal</li><li>Product names or codes, exactly as supplied</li><li>Verified sizes, finishes and technical details</li><li>Dealer-use permission and image-credit requirements</li></ul><a class="btn" href="#contact">Inquire about Laminar</a></div></div></div>`;
+      const GALP = () =>
+        `<div class="w pg"><div class="eb">Editorial interiors · not showroom projects</div><h1 style="font-size:clamp(2rem,5vw,3.2rem)">Inspiration Gallery</h1><div class="preview-notice"><strong>Editorial room photography</strong><span>These Unsplash-hosted editorial images are for design inspiration only; they are not Aashika projects, customer homes or verified product installations.</span></div><div class="ch" id="gc">${["All", ...GAL].map((g, i) => `<button class="${i ? "" : "on"}">${g}</button>`).join("")}</div><div class="g inspiration-grid" id="gg"></div></div>`;
+      function openLightbox(content) {
+        $("#lb").innerHTML = content;
+        $("#lb").classList.add("on");
+        $("#lb").setAttribute("aria-hidden", "false");
+      }
+      function closeLightbox() {
+        $("#lb").classList.remove("on");
+        $("#lb").setAttribute("aria-hidden", "true");
+      }
+      function initGal() {
+        const f = (t) => {
+          $("#gg").innerHTML = GI.filter((x) => t == "All" || x.t == t)
+            .map(
+              (x, i) =>
+                `<button class="cd gallery-card" type="button"><div class="im">${imageHTML(x.photo, `${x.t} editorial interior inspiration`, x.fallback, "Editorial image · Unsplash")}</div><div class="cb"><h3>${x.t}</h3><span class="lk">Explore ideas →</span></div></button>`,
+            )
+            .join("");
+          document
+            .querySelectorAll("#gg .gallery-card")
+            .forEach(
+              (c) =>
+                (c.onclick = () =>
+                  openLightbox(
+                    `<div class="im lightbox-image" style="width:min(1100px,100%)">${c.querySelector(".im").innerHTML}</div>`,
+                  )),
+            );
+        };
+        document.querySelectorAll("#gc button").forEach(
+          (b) =>
+            (b.onclick = () => {
+              document
+                .querySelectorAll("#gc button")
+                .forEach((x) => x.classList.remove("on"));
+              b.classList.add("on");
+              f(b.textContent);
+            }),
+        );
+        f("All");
+      }
+      $("#lb").onclick = closeLightbox;
+      addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeLightbox();
+      });
+      const ABOUT =
+        () => `<div class="w pg"><div class="eb">About Us</div><h1 style="font-size:clamp(2rem,5vw,3.2rem)">Aashika Tiles & Marble</h1><p style="max-width:680px">Tiles • Marble • Granite · Official Dealer of Laminar Tiles & Marble in Nawalpur.</p><h2 style="margin-top:32px">Owners</h2><div class="g owner-grid"><div class="cd"><div class="cb"><h3>Aashish Bhandari</h3><p>Owner</p></div></div><div class="cd"><div class="cb"><h3>Barsha Sapkota</h3><p>Owner</p></div></div></div>
+<h2 style="margin-top:48px">Our Story</h2><p>${ph("[ADD A VERIFIED BUSINESS INTRODUCTION]")}</p>
+<div class="g" style="margin-top:30px">${[
+          ["Materials", "Tiles • Marble • Granite"],
+          ["Official dealer", "Laminar Tiles & Marble · Nawalpur"],
+          [
+            "Showroom",
+            "Contact us to confirm the address and directions before visiting.",
+          ],
+        ]
+          .map(
+            (x) =>
+              `<div class="cd" style="cursor:default"><div class="cb"><h3>${x[0]}</h3><p>${x[1]}</p></div></div>`,
+          )
+          .join("")}</div></div>`;
+      const CON =
+        () => `<div class="w pg"><div class="eb">Contact · Nawalpur</div><h1 style="font-size:clamp(2rem,5vw,3.2rem)">Talk with the showroom</h1><p class="contact-intro">Ask about current products, availability, directions or a showroom visit. Contact details will appear here once verified.</p><div class="dt"><div class="contact-card"><h3>Aashika Tiles & Marble</h3><p>Tiles • Marble • Granite<br>Official Laminar Dealer in Nawalpur</p><div class="contact-list">${ph("[ADD VERIFIED PHONE NUMBER]")}<br>${ph("[ADD VERIFIED WHATSAPP NUMBER]")}<br>${ph("[ADD VERIFIED EMAIL ADDRESS]")}<br>${ph("[ADD VERIFIED SHOWROOM ADDRESS]")}<br>${ph("[ADD VERIFIED MAP LINK]")}<br>${ph("[ADD VERIFIED SOCIAL LINKS, IF ANY]")}</div>${CFG.wa ? `<a class="btn" target="_blank" rel="noopener" href="${whatsappHref(CFG.msg)}">Send a WhatsApp inquiry</a>` : `<p class="nt">WhatsApp inquiry link will be active after the verified business number is added.</p>`}</div>
+<div class="contact-card"><h3>Send an inquiry</h3>${CFG.formEndpoint ? `<form id="cf" action="${CFG.formEndpoint}" method="post" style="display:grid;gap:12px"><label>Name<input name="name" required autocomplete="name"></label><label>Phone or email<input name="reply_to" required autocomplete="email"></label><label>Material interest<select name="interest"><option>Tiles</option><option>Marble</option><option>Granite</option><option>Laminar</option><option>Other</option></select></label><label>Message<textarea name="message" rows="4" required></textarea></label><button class="btn">Send inquiry</button><p id="ok" class="mt" aria-live="polite"></p></form>` : `<p>Online inquiry form is not connected yet. Add a verified form service endpoint in the site configuration before accepting submissions.</p><p class="nt">No information is sent or stored by this preview.</p>`}</div></div></div>`;
+      function route() {
+        const h = (location.hash || "#home").slice(1);
+        document
+          .querySelectorAll("nav a")
+          .forEach((a) =>
+            a.classList.toggle("on", a.getAttribute("href") == "#" + h),
+          );
+        $("#nv").classList.remove("open");
+        $("#bg").setAttribute("aria-expanded", "false");
+        let t =
+            "Aashika Tiles & Marble | Tiles, Marble & Granite in Nawalpur, Nepal",
+          m;
+        if (h.startsWith("p-")) {
+          app.innerHTML = detail(h.slice(2));
+          ($("#mm") || {}).onclick = () =>
+            openLightbox(
+              `<div class="im lightbox-image" style="width:min(1100px,100%)">${$("#mm").innerHTML}</div>`,
+            );
+          document.querySelectorAll(".th button").forEach(
+            (i) =>
+              (i.onclick = () => {
+                $("#mm").innerHTML = IM(
+                  P.find((x) => x.id == h.slice(2)),
+                  +i.dataset.s,
+                );
+                document
+                  .querySelectorAll(".th button")
+                  .forEach((x) => x.classList.remove("on"));
+                i.classList.add("on");
+              }),
+          );
+        } else if (h == "products") {
+          app.innerHTML = R.shop(
+            "",
+            "All Products",
+            "Search and filter tiles, marble and granite by type, colour, finish, size, application and brand.",
+          );
+          initShop("");
+          t =
+            "Tiles, Marble & Granite Products | Aashika Tiles & Marble Nawalpur";
+        } else if (h == "tiles") {
+          app.innerHTML = R.shop(
+            "Tiles",
+            "Tiles in Nawalpur",
+            "Floor, wall, bathroom, kitchen and outdoor tiles at our Nawalpur tiles showroom.",
+          );
+          initShop("Tiles");
+          t = "Tiles Shop in Nawalpur | Aashika Tiles & Marble";
+        } else if (h == "marble") {
+          app.innerHTML = R.shop(
+            "Marble",
+            "Marble in Nawalpur",
+            "White, black, beige and grey marble for floors, kitchens, bathrooms and feature walls.",
+          );
+          initShop("Marble");
+          t = "Marble Shop in Nawalpur | Aashika Tiles & Marble";
+        } else if (h == "granite") {
+          app.innerHTML = R.shop(
+            "Granite",
+            "Granite in Nawalpur",
+            "Black, grey, brown and red granite for countertops, steps and outdoor use.",
+          );
+          initShop("Granite");
+          t = "Granite in Nawalpur | Aashika Tiles & Marble";
+        } else if (h.startsWith("c-")) {
+          const dp = h.split("-")[1],
+            d = DEP[dp];
+          if (!d) {
+            location.hash = "home";
+            return;
+          }
+          const key = h.slice(dp.length + 3),
+            c = d.c.find((x) => slug(x) == key) || categoryTitle(key);
+          window.PRE = { k: "fc", v: key };
+          app.innerHTML = R.shop(d.m, c, d.s);
+          initShop(d.m);
+          t = c + " in Nawalpur | Aashika Tiles & Marble";
+        } else if (h == "inspiration") {
+          app.innerHTML = INSP();
+          t = "Inspiration | Aashika Tiles & Marble Nawalpur";
+        } else if (h == "laminar") {
+          app.innerHTML = LAM();
+          t = "Laminar Tiles Dealer in Nawalpur | Aashika Tiles & Marble";
+        } else if (h == "gallery") {
+          app.innerHTML = GALP();
+          initGal();
+          t = "Gallery | Aashika Tiles & Marble Nawalpur";
+        } else if (h == "about") {
+          app.innerHTML = ABOUT();
+          t = "About Us | Aashika Tiles & Marble Nawalpur";
+        } else if (h == "contact") {
+          app.innerHTML = CON();
+          t = "Contact | Aashika Tiles & Marble Nawalpur";
+        } else if (h == "showroom") {
+          app.innerHTML = R.home();
+          setTimeout(() => $("#showroom").scrollIntoView(), 50);
+        } else app.innerHTML = R.home();
+        document.title = t;
+        if (h != "showroom") scrollTo(0, 0);
+        obs();
+      }
+      const io = new IntersectionObserver(
+        (es) =>
+          es.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("in");
+              io.unobserve(e.target);
+            }
+          }),
+        { threshold: 0.1 },
+      );
+      function obs() {
+        document.querySelectorAll(".rv").forEach((e) => io.observe(e));
+      }
+      buildNav();
+      addEventListener("hashchange", route);
+      route();
+    </script>
+  </body>
+</html>

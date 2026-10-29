@@ -1,0 +1,1 @@
+Add actual showroom/department photographs here (.webp or .jpg): hero.webp, home-tiles.webp, home-marble.webp, home-granite.webp, laminar-banner.webp. These should depict the real Aashika showroom or authorized displays; until supplied the page uses clearly labelled editorial image stand-ins. See ../README.md.
